@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        #wrapper {
+            position: relative;
+            width: 400px;
+            height: 250px;
+            overflow: hidden;
+            margin: auto;
+        }
+        ul {
+            position: absolute;
+            left: 0px;
+        }
+        #ul1 {
+            width: 1200px;
+            left: 0;
+            transition: all .5px;
+        }
+
+        li {
+            left: 0px;
+            float: left;
+            list-style: none;
+        }
+
+        #ul1 li {
+            width: 400px;
+            height: 250px;
+            overflow:hidden;
+            float: left;
+        }
+
+        #ul1 li img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+        }
+        #dot {
+            bottom: 1px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        #dot li {
+            background-color: lightgreen;
+            width: 20px;
+            height: 10px;
+            margin: 0 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <ul id="ul1">
+            <li><img id="pic1" src="images/1.jpg"></li>
+            <li><img id="pic2" src="images/2.jpg"></li>
+            <li><img id="pic3" src="images/3.jpg"></li>
+        </ul>
+        <ul id="dot">
+            <li id="1"></li>
+            <li id="2"></li>
+            <li id="3"></li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script>
+        let slideNum = 0;
+        let slideCount = $("#ul1 li").length;
+        let lastIndex = slideCount - 1;
+        // $("#dot li").mouseenter(function(){
+        //     slideNum = $(this).index();
+        //     // console.log(slideNum);
+        //     show();
+        // });
+        function show(){
+            $("#dot li").eq(slideNum).css("background-color","lightgreen").
+            siblings().css({"background-color":"transparent","border":"1px solid white"});
+            let slidemove = 0-400*slideNum;
+            $("#ul1").css("left",slidemove);
+        }
+        function play(){
+            stop = window.setInterval(function(){
+                slideNum++;
+                if (slideNum>lastIndex)
+                    slideNum=0;
+                show();
+            },2000);
+        }play();
+    </script>
+</body>
+</html>
